@@ -1,0 +1,44 @@
+
+@enduml
+@startuml
+
+class TTTTileButton {
+    - int row
+    - int col
+    - String symbol
+    + TTTTileButton(int row, int col)
+    + int getRow()
+    + int getCol()
+    + String getSymbol()
+    + void setSymbol(String symbol)
+    + boolean isEmpty()
+}
+
+class TTTGameFrame {
+    - TTTTileButton[][] buttons
+    - JLabel statusLabel
+    - TTTGame game
+    - JPanel boardPanel
+    + TTTGameFrame()
+    + void updateStatus(String message)
+    + void resetBoardUI()
+    + void disableBoard()
+    + TTTTileButton[][] getButtons()
+}
+
+class TTTGame {
+    - TTTGameFrame frame
+    - String currentPlayer
+    + TTTGame(TTTGameFrame frame)
+    + void handleMove(int row, int col)
+    + void resetGame()
+    - void switchPlayer()
+    - boolean checkWin()
+    - boolean checkTie()
+}
+
+TTTGameFrame "1" *-- "1" TTTGame
+TTTGameFrame "1" *-- "9" TTTTileButton
+TTTGame "1" *-- "1" TTTGameFrame
+
+@enduml
