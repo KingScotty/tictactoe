@@ -18,7 +18,12 @@ public class TTTGameFrame extends JFrame{
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(statusLabel, BorderLayout.NORTH);
 
+        setLayout(new BorderLayout());
         //center panel, game board
+        boardPanel = new JPanel(new GridLayout(3, 3));
+
+        game = new TTTGame(this);
+
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 buttons[row][col] = new TTTTileButton(row, col);
@@ -33,7 +38,7 @@ public class TTTGameFrame extends JFrame{
             }
         }
         add(boardPanel, BorderLayout.CENTER);
-        boardPanel = new JPanel(new GridLayout(3, 3));
+      //  boardPanel = new JPanel(new GridLayout(3, 3));
         // bottom: reset + quit
         JPanel bottomPanel = new JPanel();
         JButton resetButton = new JButton("Reset");
