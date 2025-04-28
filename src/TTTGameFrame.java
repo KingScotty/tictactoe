@@ -18,7 +18,7 @@ public class TTTGameFrame extends JFrame{
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(statusLabel, BorderLayout.NORTH);
 
-        setLayout(new BorderLayout());
+       // setLayout(new BorderLayout());
         //center panel, game board
         boardPanel = new JPanel(new GridLayout(3, 3));
 
@@ -46,6 +46,7 @@ public class TTTGameFrame extends JFrame{
 
         resetButton.addActionListener(e -> game.resetGame());
         quitButton.addActionListener(e -> System.exit(0));
+
         bottomPanel.add(resetButton);
         bottomPanel.add(quitButton);
       //  add(boardPanel, BorderLayout.CENTER);
@@ -60,6 +61,8 @@ public class TTTGameFrame extends JFrame{
     public void updateStatus(String message) {
         statusLabel.setText(message);
     }
+
+    // This method is commented out because it is not working right
     public void resetBoardUI(){
         for (TTTTileButton[] row : buttons) {
             for (TTTTileButton button : row) {
@@ -69,6 +72,7 @@ public class TTTGameFrame extends JFrame{
         }
         updateStatus("Player X's turn");
     }
+
 public void disableBoard(){
     for (TTTTileButton[] row : buttons) {
         for (TTTTileButton button : row) {

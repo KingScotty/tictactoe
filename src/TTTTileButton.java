@@ -11,7 +11,8 @@ public TTTTileButton(int row, int col) {
     this.row = row;
     this.col = col;
     this.symbol = "";
-    setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 36));
+    setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 72));
+    setText(symbol);
 }
 
     public int getRow() {
