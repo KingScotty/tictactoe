@@ -6,6 +6,7 @@ public class TTTGameFrame extends JFrame{
     private TTTTileButton[][] buttons = new TTTTileButton[3][3];
     private  JLabel statusLabel;
     private TTTGame game;
+    private JPanel boardPanel;
 
     public  TTTGameFrame(){
         setTitle("TTT Game");
@@ -18,20 +19,21 @@ public class TTTGameFrame extends JFrame{
         add(statusLabel, BorderLayout.NORTH);
 
         //center panel, game board
-        JPanel boardPanel = new JPanel(new GridLayout(3, 3));
-        game = new TTTGame(this);
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                buttons[row][col] = new TTTTileButton(row, col, this);
+                buttons[row][col] = new TTTTileButton(row, col);
                 int finalRow = row;
                 int finalCol = col;
-            }
-             buttons[row][col].addActionListener(e -> {
-                game.handleButtonClick(finalRow, finalCol);
-             });
-                boardPanel.add(buttons[row][col]);
 
+                buttons[row][col].addActionListener(e -> {
+                    game.handleMove(finalRow, finalCol);
+                });
+
+                boardPanel.add(buttons[row][col]);
             }
+        }
+        add(boardPanel, BorderLayout.CENTER);
+        boardPanel = new JPanel(new GridLayout(3, 3));
         // bottom: reset + quit
         JPanel bottomPanel = new JPanel();
         JButton resetButton = new JButton("Reset");
@@ -62,7 +64,7 @@ public class TTTGameFrame extends JFrame{
         }
         updateStatus("Player X's turn");
     }
-public void diasableBoardUI(){
+public void disableBoard(){
     for (TTTTileButton[] row : buttons) {
         for (TTTTileButton button : row) {
             button.setEnabled(false);
@@ -70,6 +72,9 @@ public void diasableBoardUI(){
     }
 
 }
+    public TTTTileButton[][] getButtons() {
+        return buttons;
+    }
 
     }
 
